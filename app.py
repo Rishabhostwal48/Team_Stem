@@ -7,7 +7,6 @@ from datetime import datetime
 import json
 import base64
 
-
 from utils_simple import (
     process_file, 
     analyze_image, 
@@ -54,8 +53,8 @@ if "OPENAI_API_KEY" not in st.session_state:
 # # Load CSS
 # load_css("assets/style.css")
 
-st.title("🏥 VEDYA ")
-st.markdown("Detect Health Issue, before its TOO LATE !!!")
+st.title("🏥 VEDYA : Detect Health Issue, before its TOO LATE!")
+
 st.markdown("Upload medical images for instant report and Collab with Doctors ")
 
 
@@ -121,7 +120,7 @@ if selected_tab == "Image Upload & Analysis":
                     st.session_state.file_type = file_data["type"]
                     
                     # Display the image
-                    st.image(file_data["data"], caption=f"Uploaded {file_data['type']} image", use_column_width=True)
+                    st.image(file_data["data"], caption=f"Uploaded {file_data['type']} image", use_container_width=True)
                     
                     # Analysis button
                     if st.button("Analyze Image") and st.session_state.openai_key:
@@ -161,9 +160,9 @@ if selected_tab == "Image Upload & Analysis":
                                 overlay, heatmap = generate_heatmap(file_data["array"])
                                 col1, col2 = st.columns(2)
                                 with col1:
-                                    st.image(overlay, caption="Heatmap Overlay", use_column_width=True)
+                                    st.image(overlay, caption="Heatmap Overlay", use_container_width=True)
                                 with col2:
-                                    st.image(heatmap, caption="Raw Heatmap", use_column_width=True)
+                                    st.image(heatmap, caption="Raw Heatmap", use_container_width=True)
                             
                             # Show medical references if enabled
                             if include_references and analysis_results.get("keywords"):
